@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const ProductRoutes = require('./routes/api/products')
 const path = require('path')
 const UserRoutes = require('./routes/api/users')
+const db = require('./config/keys').mongoURI;
 
 require('dotenv').config();
 
@@ -13,7 +14,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 mongoose
-    .connect(process.env.MONGO_URI, {
+    .connect(db, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
 
@@ -24,4 +25,5 @@ mongoose
 app.use('/api/products', ProductRoutes)
 app.use('/api/users', UserRoutes)
 
-app.listen(process.env.PORT, () => console.log(`App listening at http://localhost:${process.env.PORT}`))
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`App listening at http://localhost:${port}`))
