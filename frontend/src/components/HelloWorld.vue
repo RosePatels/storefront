@@ -2,19 +2,19 @@
   <div>
     <h3>Products</h3>
     <form>
-          <input v-model="title" type="text" name="name" placeholder="Enter Product" />
+          <input v-model="state.title" type="text" name="name" placeholder="Enter Product" />
            <br />
-          <input v-model="description" type="text" name="description"  placeholder="Enter Description" />
+          <input v-model="state.description" type="text" name="description"  placeholder="Enter Description" />
           <br />
-          <input v-model="quantity" type="number" name="quantity"  placeholder="Enter Quantity" />
+          <input v-model="state.quantity" type="number" name="quantity"  placeholder="Enter Quantity" />
           <br />
-          <input v-model="price" type="number" name="price"  placeholder="Enter Price" />
+          <input v-model="state.price" type="number" name="price"  placeholder="Enter Price" />
           <br />
           <button @click="addProduct">Add Product</button>
     </form>
     <div>
       <ul>
-        <li v-for="(product, i) in products" :key="product._id">
+        <li v-for="(product, i) in state.products" :key="product._id">
           <div>
           <span>{{ product.title }}</span>
           <span>{{ product.description }}</span>
@@ -28,42 +28,40 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from "axios";
-export default {
-  name: "App",
-  data() {
-    return {
+import { ref, onMounted } from "vue";
+
+    const state = ref({
       products: [],
       description: "",
       title: "",
       quantity: 0,
       price: 0
-    };
-  },
-  async mounted() {
+    })
+
+  onMounted(async () => {
     const response = await axios.get("api/products/");
-    this.products = response.data;
-  },
-  methods: {
-    async addProduct(e) {
+    state.value.products = response.data;
+  })
+
+    async function addProduct(e) {
       e.preventDefault();
       const response = await axios.post("api/products/", {
-        title: this.title,
-        description: this.description,
-        quantity: this.quantity,
-        price: this.price
+        title: state.value.title,
+        description: state.value.description,
+        quantity: state.value.quantity,
+        price: state.value.price
       });
-      this.products.push(response.data);
-      this.title = "";
-      this.description = "";
-    },
-    async removeProduct(item, i) {
+      state.value.products.push(response.data);
+      state.value.title = "";
+      state.value.description = "";
+    }
+
+    async function removeProduct(item, i) {
       await axios.delete("api/products/" + item._id);
-      this.products.splice(i, 1);
-    },
-  }
-};
+      state.value.products.splice(i, 1);
+    }
 </script>
 
 <style></style>
