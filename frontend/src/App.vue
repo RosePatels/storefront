@@ -12,11 +12,9 @@ import ProductList from './components/ProductList.vue';
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
   height: 100vh;
   width: 100vw;
+  background: #f3f3f3;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
