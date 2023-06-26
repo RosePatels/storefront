@@ -1,9 +1,9 @@
 <template>
-  <HelloWorld />
+  <product-list />
 </template>
 
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import ProductList from './components/ProductList.vue';
 
 </script>
 

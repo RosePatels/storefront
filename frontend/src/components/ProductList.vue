@@ -13,17 +13,16 @@
           <button @click="addProduct">Add Product</button>
     </form>
     <div>
-      <ul>
-        <li v-for="(product, i) in state.products" :key="product._id">
-          <div>
-          <span>{{ product.title }}</span>
-          <span>{{ product.description }}</span>
-          <span>{{ product.quantity }}</span>
-          <span>${{ product.price }}</span>
-        </div>
+      <div v-for="(product, i) in state.products" :key="product._id">
+        <div>
+            <span>{{ product.title }}</span>
+            <span>{{ product.description }}</span>
+            <span>{{ product.quantity }}</span>
+            <span>${{ product.price }}</span>
+          </div>
           <button @click="removeProduct(product, i)">DELETE PRODUCT</button>
-        </li>
-      </ul>
+
+      </div>
     </div>
   </div>
 </template>
