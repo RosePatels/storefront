@@ -1,10 +1,12 @@
 <template>
-  <product-list />
+  <main-navbar />
+  <router-view />
+  <!-- <product-list /> -->
 </template>
 
 <script setup>
-import ProductList from './components/ProductList.vue';
-
+import MainNavbar from './components/MainNavbar.vue';
+// import ProductList from './components/ProductList.vue';
 </script>
 
 <style>
