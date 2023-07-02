@@ -17,7 +17,6 @@ router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const product = await Product.findById(id);
-        debugger;
         if(!product) throw new Error('Could not find product');
         res.status(200).json(product);
     } catch(error) {
@@ -27,7 +26,6 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const newProduct = new Product(req.body);
-    debugger;
     try {
         const product = await newProduct.save();
         if(!product) throw new Error('Unable to save product');

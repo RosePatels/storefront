@@ -1,6 +1,7 @@
 <template>
     <div class="product-list-container">
       <div class="product-container" v-for="(product) in products" :key="product._id">
+        <router-link :to="{ name: 'product-detail', params: { id: product._id }}">
         <div class="product-background">
           test
         </div>
@@ -10,6 +11,7 @@
           </div>
           <!-- <button @click="removeProduct(product, i)">DELETE PRODUCT</button> -->
 
+        </router-link>
       </div>
     </div>
 </template>

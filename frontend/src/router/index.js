@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ProductList from "../components/ProductList.vue";
 import ProductForm from "../components/ProductForm.vue";
+import ProductDetail from "../components/ProductDetail.vue";
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -10,17 +11,17 @@ const router = createRouter({
       name: 'product-list',
       component: ProductList,
     },
-    // {
-    //   path: '/event/:id',
-    //   name: 'event-details',
-    //   props: true,
-    //   component: EventDetailsView,
-    // },
     {
       path: '/add-product',
       name: 'add-product',
       component: ProductForm,
     },
+    {
+        path: '/product/:id',
+        name: 'product-detail',
+        component: ProductDetail,
+        props: true
+    }
   ],
 })
 
