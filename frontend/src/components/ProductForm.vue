@@ -30,9 +30,14 @@ async function addProduct(e) {
         quantity: state.value.quantity,
         price: state.value.price
     });
-    // state.value.products.push(response.data);
+    resetState();
+}
+
+function resetState() {
     state.value.title = "";
     state.value.description = "";
+    state.value.quantity = 0;
+    state.value.price = 0;
 }
 </script>
 

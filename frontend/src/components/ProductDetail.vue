@@ -3,6 +3,10 @@
   <div>{{ id }}</div>
   <div>{{ product.title  }}</div>
   <div>{{ product.description }}</div>
+  <router-link :to="{ name: 'edit-product', params: { id: product._id } }">
+    <button>Edit</button>
+  </router-link>
+  <button>Delete</button>
 </template>
 
 <script setup>

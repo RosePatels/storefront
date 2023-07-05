@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ProductList from "../components/ProductList.vue";
-import ProductForm from "../components/ProductForm.vue";
+import AddProduct from "../components/AddProduct.vue";
+import EditProduct from "../components/EditProduct.vue";
 import ProductDetail from "../components/ProductDetail.vue";
 import NotFound from "../components/NotFound.vue";
 
@@ -15,7 +16,12 @@ const router = createRouter({
     {
       path: '/add-product',
       name: 'add-product',
-      component: ProductForm,
+      component: AddProduct,
+    },
+    {
+        path: '/edit-product/:id',
+        name: 'edit-product',
+        component: EditProduct
     },
     {
         path: '/product/:id',
