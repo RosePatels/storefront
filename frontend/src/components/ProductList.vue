@@ -1,6 +1,6 @@
 <template>
     <div class="product-list-container">
-      <div class="product-container" v-for="(product) in products" :key="product._id">
+      <div class="product-container" v-for="(product) in productStore.products" :key="product._id">
         <router-link :to="{ name: 'product-detail', params: { id: product._id }}">
         <div class="product-background">
           test
@@ -9,26 +9,20 @@
             <span>{{ product.title }}</span>
             <span>${{ product.price }}</span>
           </div>
-          <!-- <button @click="removeProduct(product, i)">DELETE PRODUCT</button> -->
-
         </router-link>
       </div>
     </div>
 </template>
 
 <script setup>
-import axios from "axios";
-import { ref, onMounted } from "vue";
-  const products = ref([]);
+import { onMounted } from "vue";
+import { useProductStore } from "@/store/product";
+  const productStore = useProductStore();
+
   onMounted(async () => {
-    const response = await axios.get("api/products/");
-    products.value = response.data;
+    await productStore.fetchProducts();
   })
 
-    // async function removeProduct(item, i) {
-    //   await axios.delete("api/products/" + item._id);
-    //   state.value.products.splice(i, 1);
-    // }
 </script>
 
 <style scoped>
