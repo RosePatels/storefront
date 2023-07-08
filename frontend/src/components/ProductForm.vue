@@ -4,6 +4,8 @@
             <br />
             <input v-model="state.description" type="text" name="description"  placeholder="Enter Description" />
             <br />
+            <input v-model="state.color" type="color" />
+            <br />
             <input v-model="state.quantity" type="number" name="quantity"  placeholder="Enter Quantity" />
             <br />
             <input v-model="state.price" type="number" name="price"  placeholder="Enter Price" />
@@ -35,7 +37,8 @@ const state = ref({
     description: "",
     title: "",
     quantity: 0,
-    price: 0
+    price: 0,
+    color: "#ffffff"
 })
 
 async function addProduct(e) {

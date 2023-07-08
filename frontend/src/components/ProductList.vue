@@ -2,8 +2,8 @@
     <div class="product-list-container">
       <div class="product-container" v-for="(product) in productStore.products" :key="product._id">
         <router-link :to="{ name: 'product-detail', params: { id: product._id }}">
-        <div class="product-background">
-          test
+        <div class="product-background"  :style="{ 'background-color': product.color || 'grey' }">
+          
         </div>
         <div class="product-info">
             <span>{{ product.title }}</span>

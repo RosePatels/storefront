@@ -8,6 +8,9 @@ const ProductSchema = new Schema({
     description: { 
         type: String
     },
+    color: {
+        type: String
+    },
     quantity: {
         type: Number
     },
