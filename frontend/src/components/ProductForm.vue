@@ -15,12 +15,13 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useProductStore } from "@/store/product";
 import axios from "axios";
 
 const props = defineProps(['isEdit']);
 const route = useRoute();
+const router = useRouter();
 const productStore = useProductStore();
 
 onMounted(async () => {
@@ -41,11 +42,13 @@ async function addProduct(e) {
     e.preventDefault();
     await productStore.addProduct(state.value);
     resetState();
+    router.push({ name: 'product-list'  });
 }
 
 async function updateProduct(e) {
     e.preventDefault();
     await productStore.updateProduct(state.value);
+    router.push({ name: 'product-list' })
 }
 
 function resetState() {
