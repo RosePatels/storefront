@@ -4,6 +4,8 @@ import AddProduct from "../components/AddProduct.vue";
 import EditProduct from "../components/EditProduct.vue";
 import ProductDetail from "../components/ProductDetail.vue";
 import NotFound from "../components/NotFound.vue";
+import SignUp from "../components/session/SignUp.vue";
+import LoginUser from "../components/session/LoginUser.vue";
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -37,6 +39,16 @@ const router = createRouter({
         path: '/:catchAll(.*)',
         name: 'not-found',
         component: NotFound
+    },
+    {
+        path: '/signup',
+        name: 'signup',
+        component: SignUp
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: LoginUser
     }
   ],
 })
