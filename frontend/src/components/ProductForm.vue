@@ -1,6 +1,11 @@
 <template>
     <form>
-            <input v-model="state.title" type="text" name="name" placeholder="Enter Product" />
+            <div :class="{ error: v$.title.$errors.length }">
+                <div class="input-errors" v-for="error of v$.title.$errors" :key="error.$uid">
+                    <div class="error-msg">{{ error.$message }}</div>
+                </div>
+            </div>
+            <input v-model="state.title" type="text" name="name" placeholder="Enter Product" :class="{ 'input-error': v$.title.$error }" />
             <br />
             <input v-model="state.description" type="text" name="description"  placeholder="Enter Description" />
             <br />
@@ -20,6 +25,8 @@ import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useProductStore } from "@/store/product";
 import axios from "axios";
+import { useVuelidate } from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 
 const props = defineProps(['isEdit']);
 const route = useRoute();
@@ -41,8 +48,16 @@ const state = ref({
     color: "#ffffff"
 })
 
+const rules = {
+    title: { required },
+}
+
+const v$ = useVuelidate(rules, state);
+
 async function addProduct(e) {
     e.preventDefault();
+    const isFormCorrect = await v$.value.$validate()
+    if (!isFormCorrect) return
     await productStore.addProduct(state.value);
     resetState();
     router.push({ name: 'product-list'  });
@@ -61,9 +76,14 @@ function resetState() {
     state.value.price = 0;
 }
 
-
 </script>
 
-<style>
+<style scoped>
+.input-errors {
+    color: red;
+}
 
+.input-error {
+    border: 1px solid red;
+}
 </style>
