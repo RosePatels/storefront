@@ -6,10 +6,12 @@ const ProductRoutes = require('./routes/api/products')
 const path = require('path')
 const UserRoutes = require('./routes/api/users')
 const db = require('./config/keys').mongoURI;
+const history = require('connect-history-api-fallback');
 
 require('dotenv').config();
 
 app.use(cors())
+app.use(history());
 
 mongoose
     .connect(db, {
@@ -20,9 +22,9 @@ mongoose
     .then(() => console.log('MongoDB database Connected...'))
     .catch((err) => console.log(err))
 
-if(process.env.NODE_ENV === 'production') {
-    app.use(express.static('frontend/dist'));
-    app.get('/*', (req, res) => {
+    if(process.env.NODE_ENV === 'production') {
+         app.use(express.static('frontend/dist'));
+    app.get('/', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
     })
 
