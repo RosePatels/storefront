@@ -22,7 +22,7 @@ mongoose
     .then(() => console.log('MongoDB database Connected...'))
     .catch((err) => console.log(err))
 
-if(process.env.NODE_ENV === 'production') {
+if(process.env.PORT === 'production') {
     app.use(express.static('frontend/dist'));
 }
 
