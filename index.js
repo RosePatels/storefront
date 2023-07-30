@@ -22,8 +22,12 @@ mongoose
     .then(() => console.log('MongoDB database Connected...'))
     .catch((err) => console.log(err))
 
-if(process.env.PORT === 'production') {
+if(process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/dist'));
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
+    })
+
 }
 
 app.use('/api/products', ProductRoutes)
