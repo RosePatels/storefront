@@ -19,17 +19,23 @@ const router = createRouter({
       path: '/add-product',
       name: 'add-product',
       component: AddProduct,
+      meta: {  
+        requiresAuth: true
+      }
     },
     {
         path: '/edit-product/:id',
         name: 'edit-product',
-        component: EditProduct
+        component: EditProduct,
+        meta: {
+          requiresAuth: true
+        }
     },
     {
         path: '/product/:id',
         name: 'product-detail',
         component: ProductDetail,
-        props: true
+        props: true,
     },
     {
         path: '/home',
@@ -52,5 +58,14 @@ const router = createRouter({
     }
   ],
 })
+
+router.beforeEach((to, from, next) => {
+  const loggedIn = localStorage.getItem('jwtToken');
+  if(to.meta.requiresAuth && !loggedIn) {
+    next('/login')
+  } else {
+    next();
+  }
+});
 
 export default router

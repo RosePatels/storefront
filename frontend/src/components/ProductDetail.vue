@@ -4,22 +4,26 @@
   <div>{{ product.title  }}</div>
   <div>{{ product.description }}</div>
   <router-link :to="{ name: 'edit-product', params: { id: product._id } }">
-    <button>Edit</button>
+    <button v-if="isLoggedIn">Edit</button>
   </router-link>
-  <button @click="removeProduct">Delete</button>
+  <button v-if="isLoggedIn" @click="removeProduct">Delete</button>
 </template>
 
 <script setup>
 import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useProductStore } from "@/store/product";
 import { useRouter } from "vue-router";
+import { useUserAuthStore } from "@/store/userAuth";
 
 const props = defineProps(['id']);
 const productStore = useProductStore();
 const router = useRouter();
+const userAuth = useUserAuthStore();
 
 const product = ref([]);
+const isLoggedIn = computed(() => userAuth.loggedIn);
+
 onMounted(async () => {
     const response = await axios.get(`/api/products/${props.id}`);
     product.value = response.data;

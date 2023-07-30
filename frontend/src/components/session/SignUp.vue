@@ -24,13 +24,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import axios from "axios";
+import { ref, onMounted } from "vue";
 import { useVuelidate } from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 import { useRouter } from "vue-router";
+import { useUserAuthStore } from "@/store/userAuth";
 
 const router = useRouter();
+const userAuth = useUserAuthStore();
 
 const state = ref({
 	username: "",
@@ -50,9 +51,9 @@ async function signupUser(e) {
 	e.preventDefault();
 	const isFormCorrect = await v$.value.$validate()
 	if (!isFormCorrect) return
-	await axios.post(`/api/users/register`, state.value);
+	await userAuth.register(state.value);
 	resetState();
-	router.push({ name: 'product-list' });
+	router.push({ name: 'login' });
 }
 
 function resetState() {
@@ -60,6 +61,12 @@ function resetState() {
 	state.value.email = "";
 	state.value.password = "";
 }
+
+onMounted(() => {
+	if (userAuth.loggedIn) {
+		router.push({ name: 'product-list' })
+	}
+})
 
 </script>
 
