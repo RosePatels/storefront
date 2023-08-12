@@ -5,14 +5,17 @@
     <router-link v-if="!isLoggedIn" :to="{ name: 'signup' }">Sign Up</router-link>
     <router-link v-if="!isLoggedIn" :to="{ name: 'login' }">Login</router-link>
     <router-link v-if="isLoggedIn" @click="userAuth.logout" :to="{ name: 'login' }">Logout</router-link>
+    <router-link :to="{ name: 'cart' }">Cart  ({{ cart.cartItems.length }})</router-link>
   </div>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { useUserAuthStore } from '@/store/userAuth';
+import { useCartStore } from "@/store/cart";
 
 const userAuth = useUserAuthStore();
+const cart = useCartStore();
 const isLoggedIn = computed(() => userAuth.loggedIn);
 </script>
 

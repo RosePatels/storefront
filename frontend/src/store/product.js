@@ -23,7 +23,6 @@ const updateProduct = async (formData) => {
     }
 }
 
-
 const deleteProduct = async (id) => {
     const prodIdx = products.value.findIndex(prod => prod._id === id);
     await axios.delete(`/api/products/${id}`);

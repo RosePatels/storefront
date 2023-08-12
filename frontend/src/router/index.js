@@ -6,6 +6,7 @@ import ProductDetail from "../components/ProductDetail.vue";
 import NotFound from "../components/NotFound.vue";
 import SignUp from "../components/session/SignUp.vue";
 import LoginUser from "../components/session/LoginUser.vue";
+import ShoppingCart from "../components/ShoppingCart.vue";
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -55,6 +56,11 @@ const router = createRouter({
         path: '/login',
         name: 'login',
         component: LoginUser
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: ShoppingCart
     }
   ],
 })
