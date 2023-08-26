@@ -14,7 +14,6 @@ import MainNavbar from './components/MainNavbar.vue';
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
   width: 100vw;
-  background: #f3f3f3;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
