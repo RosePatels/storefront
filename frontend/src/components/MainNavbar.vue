@@ -38,7 +38,8 @@ const isLoggedIn = computed(() => userAuth.loggedIn);
 #nav {
   display: flex;
   justify-content: space-between;
-  padding: 5px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #dddddd;
 }
 
 .nav-logo {
@@ -60,9 +61,14 @@ const isLoggedIn = computed(() => userAuth.loggedIn);
   padding: 5px 10px 5px 0;
 }
 
+.nav-links li:hover a {
+  font-weight: 700;
+}
+
 .nav-links li a {
   font-weight: 500;
   text-decoration: none;
   color: black;
+  font-size: 14px;
 }
 </style>

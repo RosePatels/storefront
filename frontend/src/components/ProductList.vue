@@ -30,7 +30,7 @@ import { useProductStore } from "@/store/product";
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
-  padding: 10px;
+  padding: 20px;
   max-width: 1400px;
   margin: 0 auto;
 }
