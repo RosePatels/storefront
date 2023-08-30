@@ -156,7 +156,7 @@ const getTotal = computed(() => cartStore.cartItems.reduce((acc, it) => acc + (i
 
 .empty-cart {
   text-align: center;
-  padding-top: 30px;
+  padding-top: 50px;
 }
 
 @media screen and (max-width: 600px) {
