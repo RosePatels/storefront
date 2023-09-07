@@ -110,7 +110,7 @@ const getTotal = computed(() => cartStore.cartItems.reduce((acc, it) => acc + (i
 }
 
 .bill-container {
-  background: #f6f6f6;
+  background: #f1f1f1;
   padding: 20px 15px;
   border-radius: 5px;
 }
@@ -143,7 +143,7 @@ const getTotal = computed(() => cartStore.cartItems.reduce((acc, it) => acc + (i
     font-size: 11px;
     font-weight: 700;
     cursor: pointer;
-    background: #f5f5f5;
+    background: #f1f1f1;
     color: black;
     width: 100%;
 }

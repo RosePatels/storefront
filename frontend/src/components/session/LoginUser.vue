@@ -107,7 +107,7 @@ onMounted(() => {
     font-size: 11px;
     font-weight: 700;
     cursor: pointer;
-    background: #f5f5f5;
+    background: #f1f1f1;
     color: black;
 }
 
