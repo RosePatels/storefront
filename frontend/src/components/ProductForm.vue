@@ -1,22 +1,22 @@
 <template>
-    <form>
+    <form class="product-form">
+            <label>Title: </label>
+            <input v-model="state.title" type="text" name="name" placeholder="Enter Product" :class="{ 'input-error': v$.title.$error }" />
             <div :class="{ error: v$.title.$errors.length }">
                 <div class="input-errors" v-for="error of v$.title.$errors" :key="error.$uid">
                     <div class="error-msg">{{ error.$message }}</div>
                 </div>
             </div>
-            <input v-model="state.title" type="text" name="name" placeholder="Enter Product" :class="{ 'input-error': v$.title.$error }" />
-            <br />
+            <label>Description:</label>
             <input v-model="state.description" type="text" name="description"  placeholder="Enter Description" />
-            <br />
-            <input v-model="state.color" type="color" />
-            <br />
+            <label>Color (temp placeholder for images): </label>
+            <input v-model="state.color" type="color" class="color-picker" />
+            <label>Quantity: </label>
             <input v-model="state.quantity" type="number" name="quantity"  placeholder="Enter Quantity" />
-            <br />
+            <label>Price: </label>
             <input v-model="state.price" type="number" name="price"  placeholder="Enter Price" />
-            <br />
-            <button v-if="isEdit" @click="updateProduct">Edit Product</button>
-            <button v-else @click="addProduct">Add Product</button>
+            <button v-if="isEdit" @click="updateProduct" class="submit-button">Edit Product</button>
+            <button v-else @click="addProduct" class="submit-button">Add Product</button>
     </form>
 </template>
 
@@ -81,9 +81,54 @@ function resetState() {
 <style scoped>
 .input-errors {
     color: red;
+    font-size: 10px;
+    padding-left: 5px;
+    padding-bottom: 5px;
 }
 
 .input-error {
-    border: 1px solid red;
+    border-bottom: 1px solid red;
 }
+
+.product-form {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+label {
+    font-size: 14px;
+    padding: 5px;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid #dddddd;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.color-picker {
+    padding: 0;
+}
+
+.submit-button {
+     margin: 20px 0 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #f1f1f1;
+    color: black;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background: black;
+    color: white;
+    transition: all .05s linear;
+}
+
 </style>
